@@ -1,0 +1,33 @@
+{% extends "../base3.html" %}
+
+{%load crispy_forms_tags %}
+{% block title %}اعضا{% endblock title %}
+
+
+{% block content %}
+ <div class="container mt-5">
+        <div class="card">
+            <h5 class="card-header">افزودن عضو</h5>
+            <div class="card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+
+                    <div class="row mt-5">
+                        <div class="d-flex col col-lg-4 col-sm-4 p-2 font-weight-light">
+                            <button type="submit" class="btn btn-success col ml-1">ثبت اطلاعات</button>
+                        </div>
+                        <div class="d-flex col col-lg-4 col-sm-4 p-2 font-weight-light">
+                            <a href="{% url 'family:dashbord' %}" class="btn btn-success col ml-1">پایان عضوگیری</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+
+
+</div>
+{% endblock content %}

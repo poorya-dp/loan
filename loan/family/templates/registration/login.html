@@ -1,0 +1,29 @@
+{% extends '../base.html'%}
+
+{%load crispy_forms_tags %}
+
+{% block title%}ورود{%endblock title%}
+
+{% block content %}
+
+<div class="container mt-5">
+    <p class="display-4 text-center">ورود</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+         {{form | crispy}}
+         <br>
+         <p class="text-success"><a href="{% url 'password_reset' %}">بازیابی عبور </a></p>
+         <hr>
+         <div class="row">
+            <div class="d-flex col ">
+                <button type="submit" class="btn btn-primary col ml-1">ورود</button>
+                <a href="{% url 'family:index'%}" class="btn btn-primary col">بازگشت</a>
+            </div>
+
+        </div>
+        <br><br>
+
+           
+    </form>
+</div>
+{% endblock content%}

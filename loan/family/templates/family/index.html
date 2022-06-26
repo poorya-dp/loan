@@ -1,0 +1,21 @@
+{% extends '../base.html'%}
+
+{% block title%}home{%endblock title%}
+{% block content %}
+
+<div class="container ">
+    <h1 class="text-center  mt-5">صندوق وام خانوادگی</h1>
+    <div class="row mt-5 cust overflow-hidden justify-content-lg-center ">
+        <div class="d-flex overflow-hidden mt-5  col col-lg-12 ">
+            <a href="{% url 'login'%}" class="btn btn-primary ml-1 col-lg-6 butten1 " >ورود</a>
+            <a href="{% url 'family:singup' %}" class="btn btn-primary col-lg-6 butten1 ">ثبت نام</a>
+         </div>
+    </div>
+<div class=" text-center session" >
+  <p class="alert alert-success">شما از این صفحه {{ num_visits }} بار دیدن کردید </p>
+</div>
+
+</div>
+
+
+{% endblock content%}

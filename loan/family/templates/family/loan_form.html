@@ -1,0 +1,29 @@
+{% extends '../base3.html'%}
+
+{%load crispy_forms_tags %}
+
+{% block title %}وام{% endblock title %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="text-center alert alert-{{ message.tags }}">
+            {{ message|safe }}
+        </div>
+    {% endfor %}
+{% endif %}
+    
+    {% block content %}
+    <div class="row ">
+        <div class="col-12    ">
+            <form action=""  method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                
+                <br>
+                <button type="submit" class="btn btn-success w-25 but-pos">ایجاد</button>
+                <a href="{% url 'family:dashbord'%}" class="btn btn-success w-25  but-pos">برگشت</a>
+            </form>
+        </div>        
+    </div>       
+       <br>
+    {% endblock content%}

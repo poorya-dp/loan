@@ -1,0 +1,27 @@
+{% extends '../base.html'%}
+
+{%load crispy_forms_tags %}
+
+{% block title%}ثبت نام{%endblock title%}
+{%block content%}
+
+<div class="container mt-5">
+    <p class="display-4 text-center">ثبت نام</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+         {{form | crispy}}
+         <br>
+         <hr>
+         <div class="row">
+            <div class="d-flex col ">
+                <button type="submit" class="btn btn-success col ml-1 but-pos">ثبت نام</button>
+                <a href="{% url 'family:index'%}" class="btn btn-success col but-pos">بازگشت</a>
+            </div>
+
+        </div>
+        <br><br>
+
+           
+    </form>
+    {%endblock content%}

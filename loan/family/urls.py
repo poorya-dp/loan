@@ -1,0 +1,43 @@
+
+from django.urls import path
+from .views import( IndexView,
+singup,
+lottory,
+FundCreateView,
+FundListView,
+FundUpdateView,
+FundDeleteView,
+MemberCreate,
+MemberUpdate ,
+MemberDelete,
+ListMemberView,
+DashbordView,
+LoanCreate,
+ListLoanView,
+LoanUpdate,
+LoanDelete,
+WinnerListview,
+WinnerDeleteView,
+)
+app_name = 'family'
+urlpatterns =[
+    path('',IndexView.as_view(),name='index'),
+    path('singup/', singup, name='singup'),
+    path('dashbord/createfund',FundCreateView.as_view() , name='fund_create'),
+    path('dashbord/fundlist',FundListView.as_view() , name='fund_list'),
+    path('singup/sand/<int:pk>/updateFund', FundUpdateView.as_view(), name='fund_update'),
+    path('singup/sand/<int:pk>/deletememeber', FundDeleteView.as_view(), name='fund_delete'),
+    path('singup/sand/createmember',MemberCreate.as_view() , name='create'),
+    path('singup/sand/<int:pk>/updatememeber', MemberUpdate.as_view(), name='update'),
+    path('singup/sand/<int:pk>/deletememeber', MemberDelete.as_view(), name='delete'),
+    path('dashbord', DashbordView.as_view(), name='dashbord'),
+    path('dashbord/membrList/',ListMemberView.as_view(),name='person_list'),
+    path('dashbord/createLoan',LoanCreate.as_view() , name='vam_create'),
+    path('dashbord/loanList/',ListLoanView.as_view(),name='vam_list'),
+    path('dashbord/loanList/<int:pk>/updateLoan',LoanUpdate.as_view() , name='vam_update'),
+    path('dashbord/loanList/<int:pk>/deleteLoan',LoanDelete.as_view() , name='vam_delete'),
+    path('dashbord/<int:pk>/lottory',lottory,name='lottory'),
+    path('dashbord/winnerlist',WinnerListview.as_view() , name='winner_list'),
+    path('dashbord/winnerlist/<int:pk>/DeleteWinner',WinnerDeleteView.as_view() , name='winner_delete'),
+
+]

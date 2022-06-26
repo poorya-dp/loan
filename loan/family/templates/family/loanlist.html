@@ -1,0 +1,55 @@
+{% extends '../base3.html'%}
+{% block title %}لیست وام {% endblock title %}
+
+    
+    {% block content %}
+        
+
+        <div class="row">
+            <table class="table table-bordered table-hover table_pos">
+                <thead>
+                    <tr class="text-center text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">وام</th>
+                        <th scope="col">مبلغ وام</th>
+                        <th scope="col">تعداد اقساط</th>
+                        <th scope="col">مبلغ هر قسط</th>
+                        <th scope="col">تاریخ شروع</th>
+                        <th scope="col">وضعیت</th>
+                        
+                        {% if user.is_superuser or request.user.is_staf == true %}
+                            <th scope="col">ویرایش</th>
+                            <th scope="col">حذف</th>
+                            <th scope="col">قرعه کشی</th>
+                        {% endif %}
+                        
+                        
+                    </tr>    
+                </thead>
+                <tbody>
+                    {% for loan in loan_list %}
+                        <tr class="text-center bg-white">
+                            <th scope="row">{{loan.id}}</th>
+                            <td>وام شماره {{loan.id}}</td>
+                            <td>{{loan.m_vam}}</td>
+                            <td>{{loan.t_gest}}</td>
+                            <td>{{loan.m_ghest}}</td>
+                            <td>{{loan.created}}</td>
+                            <td class="p-2 text-nowrap">{{loan.choice}}</td>     
+                            {% if user.is_superuser or request.user.is_staf == true %}
+                            <td><a href="{% url 'family:vam_update' loan.id%}"><i class="fa-solid fa-pencil"></i></a></td>
+                            <td><a href="{% url 'family:vam_delete' loan.id%}"><i class="fa-solid fa-trash-can"></i></a></td>
+                            <td class="p-2 text-nowrap text-primary"><a href="{% url 'family:lottory' loan.id %}">قرعه کشی</a></td>
+                            {% endif %}
+                        </tr> 
+                    {% endfor %}
+                </tbody>
+                           
+            </table>
+        </div>
+      </div>
+
+
+
+      
+    {% endblock content %}

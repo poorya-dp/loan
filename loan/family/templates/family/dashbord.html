@@ -1,0 +1,22 @@
+{% extends '../base3.html' %}
+{% block title %}داشبورد{% endblock title %}
+
+{% block content%}
+    {% for fu in fund %}
+        
+            <div class="card">
+                <h5 class="card-header">اطلاعات صندوق</h5>
+                <div class="card-body">
+                    <p class="border p-3"><label for="name">نام صندوق:</label> <span>  </span>{{fu.name}}</p>
+                    <p class="border p-3"><label for="name">مدیر:</label> <span>  </span>{{ fu.sandogh }}</p>
+                    <p class="border p-3"><label for="name">تعداد سهام:</label> <span>  </span> {{ fu.saham }}</p>
+                    <p class="border p-3"><label for="name">مبلغ هر سهم:</label> <span>  </span>{{ fu.m_saham }}</p>
+                    <p class="border p-3"><label for="name">مبلغ وام:</label> <span>  </span>{{ fu.m_sandogh }}</p>
+                    <p class="border p-3"><label for="name">شماره حساب:</label> <span>  </span>{{ fu.shomare_hesab }}</p>
+                    <p class="border p-3"><label for="name">زمان ایجاد:</label> <span>  </span>{{ fu.date_created }}</p>
+                </div>
+            </div>
+        <br><br>
+    {% endfor %}
+
+{% endblock content %}

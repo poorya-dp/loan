@@ -1,0 +1,26 @@
+{%extends '../base.html'%}
+
+{%load crispy_forms_tags %}
+{%block title%}ساخت صندوق {%endblock title%}
+
+
+{%block content%}
+<div class="container mt-5">
+    <p class="display-4 text-center">ساخت صندوق </p>
+    <form action="" method="POST">
+        {% csrf_token %}
+            {{ form | crispy }}
+         <div class="row">
+            <div class="d-flex col ">
+                <button type="submit" class="btn btn-success col ml-1 but-pos">مرحله بعد </button>
+                <a href="{% url 'family:dashbord'%}" class="btn btn-success col but-pos">بازگشت</a>
+            </div>
+
+        </div>
+        <br><br>
+
+           
+    </form>
+</div>
+    
+{%endblock content%}

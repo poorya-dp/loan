@@ -1,0 +1,26 @@
+{% extends "../base3.html" %}
+
+{%load crispy_forms_tags %}
+{% block title %} حذف برنده{% endblock title %}
+
+{% block content %}
+ <div class="container mt-5">
+      <h2 class="text-center">حذف برنده</h2>
+     <hr>
+     <br>
+      <p class="alert alert-danger text-center">ایا مطمئن هستید که برنده وام {{ object.name }} حذف شود؟</p>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control btn btn-danger text-white " type="submit" value="اره، حذف کن">
+                </form>
+        <br>
+        <hr>
+
+    </div>
+
+
+
+
+
+{% endblock content %}

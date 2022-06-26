@@ -1,0 +1,46 @@
+{% extends '../base3.html' %}
+{% block title %}کاربران{% endblock title %}
+
+
+{% block content %}
+   
+        <table class="table table-bordered table_pos">
+            <thead class="text-center text-white ">
+                <th scope="col">#</th>
+                <th scope="col">شماره عضویت</th>
+                <th scope="col">نام صندوق</th>
+                <th scope="col">نام</th>
+                <th scope="col">نام خانوادگی</th>
+                <th scope="col">تعداد سهام</th>
+                <th scope="col">شماره همراه</th>
+                <th scope="col">تاریخ عضویت</th>
+                <th scope="col">وضعیت</th>
+                {% if user.is_superuser or request.user.is_staf == true %}
+                <th scope="col">ویرایش</th>
+                <th scope="col">حذف</th>
+                {%endif%}
+            </thead>
+            {% for person in member_list %}
+                <tbody class=" text-center bg-white">
+                    <tr>
+                        <td>#</td>
+                        <td>{{person.id}}</td>
+                        <td>{{person.membership}}</td>
+                        <td>{{ person.name }}</td>
+                        <td>{{person.family}}</td>
+                        <td>{{person.t_saham}}</td>
+                        <td>{{person.phone}}</td>
+                        <td>{{person.created}}</td>
+                        <td class="text-success">{{person.status}}</td>
+                        {% if user.is_superuser or request.user.is_staf == true %}
+                        <td><a href="{% url 'family:update' person.id %}"><i class="fa-solid fa-pencil"></i></a></td>
+                        <td><a href="{% url 'family:delete' person.id %}"><i class="fa-solid fa-trash-can"></i></a></td>
+                        {%endif%}
+                    </tr>
+
+                </tbody>
+            {% endfor %}
+        </table>
+
+       
+{% endblock content %}

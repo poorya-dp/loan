@@ -1,0 +1,46 @@
+{% extends '../base3.html' %}
+{% block title %}صندوق ها{% endblock title %}
+
+
+{% block content %}
+   
+        <table class="table table-bordered table_pos">
+            <thead class="text-center text-white ">
+                <th scope="col">#</th>
+                <th scope="col">شماره صندوق</th>
+                <th scope="col">نام صندوق</th>
+                <th scope="col">نام مدیر صندوق</th>
+                <th scope="col">تعداد سهام موجود </th>
+                <th scope="col">ارزش هر سهام</th>
+                <th scope="col">موجودی صندوق</th>
+                <th scope="col">شماره حساب</th>
+                <th scope="col">تاریخ ایجاد</th>
+                {% if user.is_superuser or request.user.is_staf == true %}
+                <th scope="col">ویرایش</th>
+                <th scope="col">حذف</th>
+                {%endif%}
+            </thead>
+            {% for fund in fund_list %}
+                <tbody class=" text-center bg-white text-nowrap">
+                    <tr >
+                        <td >#</td>
+                        <td>{{fund.id}}</td>
+                        <td>{{fund.name}}</td>
+                        <td>{{ fund.sandogh }}</td>
+                        <td>{{fund.saham}}</td>
+                        <td>{{fund.m_saham}}</td>
+                        <td>{{fund.m_sandogh}}</td>
+                        <td>{{fund.shomare_hesab}}</td>
+                        <td>{{fund.date_created}}</td>
+                        {% if user.is_superuser or request.user.is_staf == true %}
+                        <td><a href="{% url 'family:fund_update' fund.id %}"><i class="fa-solid fa-pencil"></i></a></td>
+                        <td><a href="{% url 'family:fund_delete' fund.id %}"><i class="fa-solid fa-trash-can"></i></a></td>
+                        {%endif%}
+                    </tr>
+
+                </tbody>
+            {% endfor %}
+        </table>
+
+       
+{% endblock content %}

@@ -1,0 +1,129 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>dashbord</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'family/css/bootstrap-rtl.min.css'%} ">
+    <link rel="stylesheet" href="{% static 'family/css/bootstrap-rtl.css'%} ">
+   
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'family/css/style3.css'%}">
+    <!-- Font Awesome JS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  {% if user.is_authenticated%}
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" >
+            <div class="sidebar-header">
+                <h3><span><img src="{% static 'family/svg/account_balance_white_24dp.svg'%}" alt=""></span>    مدیریت صندوق </h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li><p>نام کاربری <span></span>:<span></span>{{request.user.username}}</p></li>
+                <li>
+                    <a href="{% url 'family:dashbord' %}"><span> <img src="{% static 'family/svg/dashboard_white_24dp.svg'%}" alt=""></span>  داشبورد</a>
+                </li>
+                <li class="active">
+                   
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span><img src="{% static 'family/svg/real_estate_agent_white_24dp.svg'%}" alt=""></span>  صندوق</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="{% url 'family:dashbord' %}">اطلاعات صندوق </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'family:fund_list'%}">لیست صندوق ها </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'family:fund_create' %}">ایجاد صندوق جدید</a>
+                        </li>
+
+                    </ul>
+                </li>
+              
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span><img src="{% static 'family/svg/people_white_24dp.svg'%}" alt=""></span>    کاربران</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="{% url 'family:create' %}">ایجاد کاربر</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'family:person_list' %}">لیست کاربران</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#vamSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span><img src="{% static 'family/svg/attach_money_white_24dp.svg'%}" alt=""></span>  وام ها </a>
+                    <ul class="collapse list-unstyled" id="vamSubmenu">
+                        <li>
+                            <a href="{% url 'family:vam_list' %}">لیست وام ها </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'family:vam_create' %}">ایجاد وام جدید</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{%url 'family:winner_list' %}"><span><img src="{% static 'family/svg/emoji_events_white_24dp.svg'%}" alt=""> برندگان قرعه کشی</span></a>
+                </li>
+                <li>
+                    <a href="{%url 'logout'%}"><span><img src="{% static 'family/svg/logout_white_24dp.svg'%}" alt=""></span><span></span>خروج</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content  -->
+            <div id="content">
+                    <div class="container">
+                        {% block content %}
+
+                        {% endblock content %}
+                    </div>
+            </div>
+      {% else %}
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{% url 'family:login'%}" class="nav-link">ورود</a>
+                        </li>
+                    </ul>
+                    
+                </nav>
+            </div>   
+    
+    </div>    
+  {% endif%} 
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
