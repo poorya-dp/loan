@@ -5,10 +5,12 @@
 step1:install python 
 
 step2:make virtual environments  
-cmd : virtaulenv venv
+    
+    virtaulenv venv
 
 step3: install requirment.txt in loan folder
-cmd : pip install requirment.txt
+    
+    pip install requirment.txt
 
 step4: Default config makes use of sqlite3 as database:
 
